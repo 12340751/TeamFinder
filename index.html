@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>TeamFinder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<script>
+if (!localStorage.getItem("currentUser")) {
+  location.href = "login.html";
+}
+</script>
+
+<h1 class="logo">TeamFinder</h1>
+
+<p style="text-align:center">
+  👤 Вы вошли как <b id="me"></b>
+  <button onclick="logout()">Выйти</button>
+</p>
+
+<div class="top">
+  <input id="search" placeholder="🔎 Поиск по игре..." oninput="render()">
+  <a href="create.html"><button class="glow">➕ Создать</button></a>
+</div>
+
+<div id="posts"></div>
+
+<script src="script.js"></script>
+<script>
+document.getElementById("me").innerText =
+  localStorage.getItem("currentUser");
+
+function logout() {
+  localStorage.removeItem("currentUser");
+  location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

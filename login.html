@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🔑 Вход</h1>
+
+<div class="form glass">
+  <input id="login" placeholder="Логин">
+  <input id="password" type="password" placeholder="Пароль">
+  <button class="glow" onclick="loginUser()">Войти</button>
+</div>
+
+<a class="back" href="register.html">Создать аккаунт</a>
+
+<script>
+function loginUser() {
+  const login = document.getElementById("login").value;
+  const password = document.getElementById("password").value;
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const user = users.find(u => u.login === login && u.password === password);
+
+  if (!user) return alert("Неверные данные");
+
+  localStorage.setItem("currentUser", login);
+  location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

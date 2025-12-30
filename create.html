@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Создать</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<script>
+if (!localStorage.getItem("currentUser")) {
+  location.href = "login.html";
+}
+</script>
+
+<h1>➕ Новое объявление</h1>
+
+<div class="form glass">
+  <input id="game" placeholder="Игра">
+  <input id="rank" placeholder="Ранг">
+  <input id="role" placeholder="Роль">
+  <input id="contact" placeholder="Контакт">
+  <button class="glow" onclick="savePost()">Создать</button>
+</div>
+
+<a class="back" href="index.html">⬅ Назад</a>
+
+<script>
+function savePost() {
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+  posts.push({
+    id: Date.now(),
+    owner: localStorage.getItem("currentUser"),
+    game: game.value,
+    rank: rank.value,
+    role: role.value,
+    contact: contact.value
+  });
+
+  localStorage.setItem("posts", JSON.stringify(posts));
+  location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

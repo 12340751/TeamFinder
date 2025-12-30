@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Объявление</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="box" class="profile glass"></div>
+
+<a class="back" href="index.html">⬅ Назад</a>
+
+<script>
+const id = new URLSearchParams(location.search).get("id");
+const posts = JSON.parse(localStorage.getItem("posts")) || [];
+const post = posts.find(p => p.id == id);
+const box = document.getElementById("box");
+
+if (!post) {
+  box.innerText = "Объявление не найдено";
+} else {
+  box.innerHTML = `
+    <h2>${post.game}</h2>
+    <p>🏆 ${post.rank || "—"}</p>
+    <p>🧑‍💼 ${post.role || "—"}</p>
+    <p>💬 ${post.contact || "—"}</p>
+    <p>👤 Автор: <b>${post.owner}</b></p>
+  `;
+}
+</script>
+
+</body>
+</html>

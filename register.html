@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>📝 Регистрация</h1>
+
+<div class="form glass">
+  <input id="login" placeholder="Логин">
+  <input id="password" type="password" placeholder="Пароль">
+  <button class="glow" onclick="register()">Создать аккаунт</button>
+</div>
+
+<a class="back" href="login.html">Уже есть аккаунт</a>
+
+<script>
+function register() {
+  const login = document.getElementById("login").value;
+  const password = document.getElementById("password").value;
+
+  if (!login || !password) return alert("Заполни всё");
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  if (users.find(u => u.login === login)) {
+    return alert("Логин уже существует");
+  }
+
+  users.push({ login, password });
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Аккаунт создан!");
+  location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
